@@ -10,11 +10,31 @@ format: html
 The text in this section includes:
 
 - overview summary
-New York City (NYC) is popular for walking and biking among residents due to its population density. The majority of New Yorkers chose to walk, bike, or take public transportation to travel around the city more easily and conveniently, compared to driving their own vehicle. From the previous data, NYC was named as a home of 1550 miles of bike lanes, paths, and neighborhood greenways, making it the largest bicycle network across North America (Foersterling 2025). Especially, Manhattan and Brooklyn counties, with 60% of trips made on foot or by bike. Since walking and biking are the main modes of transportation across NYC, it is important to improve the safety and traffic infrastructure, further protecting pedestrians and cyclists. According to the New York Statistics report, Manhattan and Brooklyn are the more dangerous areas in the city than the rest, with the highest number of cyclist deaths in 2024 in Brooklyn and the overall traffic death rate in Manhattan.  
-In this analysis, we chose to focus on the motor vehicle collisions in the New York City area. The dataset that we used is the Motor Vehicle Collisions - Crashes dataset from data.gov, that showing the details of crash events, including borough, location, street name, the number of injured/killed, and contributing factors. The data records were collected by using the police report MV104-AN form, published and managed by the NYPD. We want to analyze and identify the “hot zone” and accident trends that involve either pedestrians or cyclists, especially focusing on the Brooklyn and Manhattan areas. So, we can use our data and analysis to help focus on safety improvements across the NYC borough. 
+New York City (NYC) is popular for walking and biking among residents due to its population density. 
+The majority of New Yorkers chose to walk, bike, or take public transportation to travel around the city more easily and conveniently, compared to driving their own vehicle. 
+From the previous data, NYC was named as a home of 1550 miles of bike lanes, paths, and neighborhood greenways, 
+making it the largest bicycle network across North America (Foersterling 2025). 
+Especially, Manhattan and Brooklyn counties, with 60% of trips made on foot or by bike. 
+Since walking and biking are the main modes of transportation across NYC, 
+it is important to improve the safety and traffic infrastructure, further protecting pedestrians and cyclists. 
+According to the New York Statistics report, Manhattan and Brooklyn are the more dangerous areas in the city than the rest, 
+with the highest number of cyclist deaths in 2024 in Brooklyn and the overall traffic death rate in Manhattan.  
+In this analysis, we chose to focus on the motor vehicle collisions in the New York City area. 
+The dataset that we used is the Motor Vehicle Collisions - Crashes dataset from data.gov, that showing the details of crash events, 
+including borough, location, street name, the number of injured/killed, and contributing factors. 
+The data records were collected by using the police report MV104-AN form, published and managed by the NYPD. 
+We want to analyze and identify the “hot zone” and accident trends that involve either pedestrians or cyclists, 
+especially focusing on the Brooklyn and Manhattan areas. So, we can use our data and analysis to help focus on safety 
+improvements across the NYC borough. 
 
 - discussion of audience & purpose
-The target audiences of our project are data analysts and urban planners, to identify the hotspots and behavioral trends of accidents involving pedestrians or bicyclists within Brooklyn and Manhattan. The purpose of this analysis is to provide data-driven insights and resource allocation for NYC by cleaning and transforming the data into a well-structured dataset. By looking at the data, our audience can conduct a study of whether specific routes/ intersections are most dangerous for pedestrians and cyclists. We also want to ensure that the dataset is efficient and accessible to our key audience to use in city planning, and help the NYC Department of Transportation to develop plans to improve traffic safety, protect city travelers, and minimize deadly accidents in these specific areas. 
+The target audiences of our project are data analysts and urban planners, to identify the hotspots and behavioral trends of accidents
+involving pedestrians or bicyclists within Brooklyn and Manhattan. The purpose of this analysis is to provide data-driven insights 
+and resource allocation for NYC by cleaning and transforming the data into a well-structured dataset. By looking at the data, 
+our audience can conduct a study of whether specific routes/ intersections are most dangerous for pedestrians and cyclists. 
+We also want to ensure that the dataset is efficient and accessible to our key audience to use in city planning, and help the NYC 
+Department of Transportation to develop plans to improve traffic safety, protect city travelers, and minimize deadly accidents in 
+these specific areas. 
 
 - conclusions/final discussion
 
