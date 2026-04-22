@@ -53,9 +53,29 @@ Data Format: CSV
 Data Content: each row is a crash event 
 
 - discussion of how the data was originally collected or generated (how did it get recorded?)
-First, we actively searched for the crime dataset on data.gov, then we used the search bar on the home page to search for the “crime” keyword. Since we wanted to focus on the collision dataset, we agreed to use the Motor Vehicle Collision - Crashes, provided by NYPD. We wanted to use this dataset because we want to identify the accident trends in some specific areas in NYC, especially focusing on crowded areas for pedestrians and cyclists. This dataset includes more than a million records since 2021 and more than 20 attributes. The dataset is a compilation of police reports made by NYPD officers responding to vehicle crashes. Police reports are required to be made when collisions result in a death or injury. (Car accidents like “fender benders” may not be represented in the dataset because they don’t require police attention, which may lead to potential biases in the analysis of this project.) 
-In April 1998, the New York Police Department (NYPD) implemented TrafficStat and used form MV-104AN to fill out all vehicle collisions. Here is the MV-104AN form that the police department used to record the traffic incidents (https://www.nhtsa.gov/sites/nhtsa.gov/files/documents/ny_overlay_mv-104an_rev05_2004.pdf). This form has all the details of a traffic collision, which includes clear information, such as travel directions, contributing factors, types of collision, and more. Then, the police department implemented the new system called TAMS in 1999 to collect traffic data from the MV-104AN form by entering the collected data manually into the system. Later on, they replaced the TAMS system with the new Finest Online Records Management System (FORMS), enabling the police officers to electronically enter all of the MV-104AN data fields into the data warehouse. 
-	An important question regarding the value of this data source is whether we can use this data to improve public safety. This data source provides five different contributing factors to the collision for designated vehicles, which we can use to identify the trends of common collision causes. For example, we can group similar factors into the same category, and then we can analyze which factors are likely to cause vehicle crashes. From this point, we can draw out the solutions for how to minimize the probability of traffic incidents based on each factor category. However, I believe that while drawing out the solutions, we should use additional data sources to further support the final decisions, because knowing the causes of collisions would not be enough to decide how to reduce them.
+First, we actively searched for the crime dataset on data.gov, then we used the search bar on the home page to search for the “crime”
+keyword. Since we wanted to focus on the collision dataset, we agreed to use the Motor Vehicle Collision - Crashes, provided by NYPD. 
+We wanted to use this dataset because we want to identify the accident trends in some specific areas in NYC, 
+especially focusing on crowded areas for pedestrians and cyclists. This dataset includes more than a million records since 2021 
+and more than 20 attributes. The dataset is a compilation of police reports made by NYPD officers responding to vehicle crashes. 
+Police reports are required to be made when collisions result in a death or injury. (Car accidents like “fender benders” may not be
+represented in the dataset because they don’t require police attention, which may lead to potential biases in 
+the analysis of this project.) 
+In April 1998, the New York Police Department (NYPD) implemented TrafficStat and used form MV-104AN to fill out all vehicle collisions.
+Here is the MV-104AN form that the police department used to record the traffic incidents 
+(https://www.nhtsa.gov/sites/nhtsa.gov/files/documents/ny_overlay_mv-104an_rev05_2004.pdf). 
+This form has all the details of a traffic collision, which includes clear information, such as travel directions, contributing factors,
+types of collision, and more. Then, the police department implemented the new system called TAMS in 1999 to collect traffic data 
+from the MV-104AN form by entering the collected data manually into the system. Later on, they replaced the TAMS system with 
+the new Finest Online Records Management System (FORMS), enabling the police officers to electronically
+enter all of the MV-104AN data fields into the data warehouse. 
+An important question regarding the value of this data source is whether we can use this data to improve public safety. 
+This data source provides five different contributing factors to the collision for designated vehicles, which we can use 
+to identify the trends of common collision causes. For example, we can group similar factors into the same category, and 
+then we can analyze which factors are likely to cause vehicle crashes. From this point, we can draw out the solutions for how to minimize
+the probability of traffic incidents based on each factor category. However, I believe that while drawing out the solutions, 
+we should use additional data sources to further support the final decisions, because knowing the causes of collisions 
+would not be enough to decide how to reduce them.
 
 - details about each of the original variables
 “Contributing factor” and “vehicle type code” may be blank depending on the number of factors or number of vehicles involved.
@@ -72,12 +92,17 @@ Number of Pedestrians Injured: numeric
 Number of Pedestrians Killed: numeric 
 Number of Cyclist Injured: numeric 
 Number of Cyclist Killed: numeric 
-Contributing Factor Vehicle 1: accident factor number 1 (for example, unspecified, failure to yield, passing too closely, unsafe speed, aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
-Contributing Factor Vehicle 2: accident factor number 2 (for example, unspecified, failure to yield, passing too closely, unsafe speed, aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
-Contributing Factor Vehicle 3: accident factor number 3 (for example, unspecified, failure to yield, passing too closely, unsafe speed, aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
+Contributing Factor Vehicle 1: accident factor number 1 (for example, unspecified, failure to yield, passing too closely, unsafe speed,
+aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
+Contributing Factor Vehicle 2: accident factor number 2 (for example, unspecified, failure to yield, passing too closely, unsafe speed,
+aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
+Contributing Factor Vehicle 3: accident factor number 3 (for example, unspecified, failure to yield, passing too closely, unsafe speed,
+aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
 Collision_Id: a unique identification of each collision (numeric)
-Vehicle Type Code 1: type 1 of vehicle involved in the accident (for example, sedan, bus, pick-up, dump, station wagon, bike, e-scooter, ambulance, taxi, box van, etc.) (text)
-Vehicle Type Code 2: type 2 of vehicle involved in the accident (for example, sedan, bus, pick-up, dump, station wagon, bike, e-scooter, ambulance, taxi, box van, etc.) (text)
+Vehicle Type Code 1: type 1 of vehicle involved in the accident (for example, sedan, bus, pick-up, dump, station wagon, bike, e-scooter,
+ambulance, taxi, box van, etc.) (text)
+Vehicle Type Code 2: type 2 of vehicle involved in the accident (for example, sedan, bus, pick-up, dump, station wagon, bike, e-scooter, 
+ambulance, taxi, box van, etc.) (text)
 
 ```{python}
 # The code chunk(s) in this section should include:
