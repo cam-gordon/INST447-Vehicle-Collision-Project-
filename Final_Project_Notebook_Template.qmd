@@ -1,0 +1,88 @@
+---
+title: "Project Title here"
+author: "Group Member Names Here"
+subtitle: "Final project for INST447, Spring 2026"
+format: html
+---
+
+# Executive Summary
+
+The text in this section includes:
+
+- overview summary
+- discussion of audience & purpose
+- conclusions/final discussion
+
+
+# Source(s) & Extraction
+
+The text in this section includes:
+
+- details and documentation about the **source** of the data
+- discussion of how the data was originally collected or generated (how did it get recorded?)
+- details about each of the original variables
+
+```{python}
+# The code chunk(s) in this section should include:
+# - code that gets the data from the source into Python
+# - code that does some initial (re-)formatting
+# - code that accomplishes merging (if merging is performed)
+
+# The code should be well-documented, including how choices were made.
+```
+
+
+# Analysis & Evaluation
+
+The text in this section includes:
+
+- descriptions of all variables
+- noteworthy patterns,
+- including discussion of potential sources of bias or unbalanced patterns
+
+You are encouraged to structure this major section into subsections as you wish, and to break up and interweave code chunks, to help with organization and readability.
+
+```{python}
+# The code chunk(s) in this section should include:
+# - descriptive stats for all relevant variables
+# - descriptive stat(s) for any relevant relationships
+# - visualizations for all relevant variables
+# - visualizations for any relevant relationships
+# - code for exploring potential sources of bias, including missing data, unbalanced groups, etc.
+
+
+```
+
+
+# Transformation Processes
+
+The text in this section includes:
+
+- what transformations/manipulations did you apply beyond the initial extraction/formatting/merging?
+- why did you do these things?
+
+```{python}
+# The code chunk(s) in this section should include:
+# - all of the code that gets the data from the initial 
+#   extraction/formatting/merging to the final data product
+#   right before "export/loading"
+
+# Documentation/explanation for the code should be in the Markdown
+# text portions, not primarily in comments.
+
+```
+
+
+# Data Product & Guide
+
+The text in this section includes:
+
+- description and "user's guide" for the final data product
+- general info and description on each variable/column in the data product
+  - note: the descriptive stats, etc. should already be in the Analysis section, but if there are any new/transformed variables that were not in that section, those should have descriptive stats and plots here
+
+```{python}
+# The code chunk(s) in this section should include:
+# - The code needed to "finalize" or "export" the final data product.
+
+```
