@@ -10,7 +10,12 @@ format: html
 The text in this section includes:
 
 - overview summary
+New York City (NYC) is popular for walking and biking among residents due to its population density. The majority of New Yorkers chose to walk, bike, or take public transportation to travel around the city more easily and conveniently, compared to driving their own vehicle. From the previous data, NYC was named as a home of 1550 miles of bike lanes, paths, and neighborhood greenways, making it the largest bicycle network across North America (Foersterling 2025). Especially, Manhattan and Brooklyn counties, with 60% of trips made on foot or by bike. Since walking and biking are the main modes of transportation across NYC, it is important to improve the safety and traffic infrastructure, further protecting pedestrians and cyclists. According to the New York Statistics report, Manhattan and Brooklyn are the more dangerous areas in the city than the rest, with the highest number of cyclist deaths in 2024 in Brooklyn and the overall traffic death rate in Manhattan.  
+In this analysis, we chose to focus on the motor vehicle collisions in the New York City area. The dataset that we used is the Motor Vehicle Collisions - Crashes dataset from data.gov, that showing the details of crash events, including borough, location, street name, the number of injured/killed, and contributing factors. The data records were collected by using the police report MV104-AN form, published and managed by the NYPD. We want to analyze and identify the “hot zone” and accident trends that involve either pedestrians or cyclists, especially focusing on the Brooklyn and Manhattan areas. So, we can use our data and analysis to help focus on safety improvements across the NYC borough. 
+
 - discussion of audience & purpose
+The target audiences of our project are data analysts and urban planners, to identify the hotspots and behavioral trends of accidents involving pedestrians or bicyclists within Brooklyn and Manhattan. The purpose of this analysis is to provide data-driven insights and resource allocation for NYC by cleaning and transforming the data into a well-structured dataset. By looking at the data, our audience can conduct a study of whether specific routes/ intersections are most dangerous for pedestrians and cyclists. We also want to ensure that the dataset is efficient and accessible to our key audience to use in city planning, and help the NYC Department of Transportation to develop plans to improve traffic safety, protect city travelers, and minimize deadly accidents in these specific areas. 
+
 - conclusions/final discussion
 
 
@@ -19,8 +24,40 @@ The text in this section includes:
 The text in this section includes:
 
 - details and documentation about the **source** of the data
+Dataset: https://catalog.data.gov/dataset/motor-vehicle-collisions-crashes 
+Location: City of New York
+Publisher: data.cityofnewyork.us 
+Access: Public
+Modification: weekly/daily by NYPD
+Data Format: CSV 
+Data Content: each row is a crash event 
+
 - discussion of how the data was originally collected or generated (how did it get recorded?)
+First, we actively searched for the crime dataset on data.gov, then we used the search bar on the home page to search for the “crime” keyword. Since we wanted to focus on the collision dataset, we agreed to use the Motor Vehicle Collision - Crashes, provided by NYPD. We wanted to use this dataset because we want to identify the accident trends in some specific areas in NYC, especially focusing on crowded areas for pedestrians and cyclists. This dataset includes more than a million records since 2021 and more than 20 attributes. The dataset is a compilation of police reports made by NYPD officers responding to vehicle crashes. Police reports are required to be made when collisions result in a death or injury. (Car accidents like “fender benders” may not be represented in the dataset because they don’t require police attention, which may lead to potential biases in the analysis of this project.) 
+In April 1998, the New York Police Department (NYPD) implemented TrafficStat and used form MV-104AN to fill out all vehicle collisions. Here is the MV-104AN form that the police department used to record the traffic incidents (https://www.nhtsa.gov/sites/nhtsa.gov/files/documents/ny_overlay_mv-104an_rev05_2004.pdf). This form has all the details of a traffic collision, which includes clear information, such as travel directions, contributing factors, types of collision, and more. Then, the police department implemented the new system called TAMS in 1999 to collect traffic data from the MV-104AN form by entering the collected data manually into the system. Later on, they replaced the TAMS system with the new Finest Online Records Management System (FORMS), enabling the police officers to electronically enter all of the MV-104AN data fields into the data warehouse. 
+	An important question regarding the value of this data source is whether we can use this data to improve public safety. This data source provides five different contributing factors to the collision for designated vehicles, which we can use to identify the trends of common collision causes. For example, we can group similar factors into the same category, and then we can analyze which factors are likely to cause vehicle crashes. From this point, we can draw out the solutions for how to minimize the probability of traffic incidents based on each factor category. However, I believe that while drawing out the solutions, we should use additional data sources to further support the final decisions, because knowing the causes of collisions would not be enough to decide how to reduce them.
+
 - details about each of the original variables
+“Contributing factor” and “vehicle type code” may be blank depending on the number of factors or number of vehicles involved.
+
+Crash Date: date of the crash in day/month/year (mm/dd/YYYY)
+Crash Time: time of the crash in 24-hour time (00:00)
+Borough: 2 out of 5 districts of NYC, including Brooklyn and Manhattan (text)
+Zip code: zip code number (5 digits)
+Latitude: numeric (decimals)
+Longitude: numeric (decimals)
+On Street Name: the primary street (text)
+Cross Street Name: The nearest intersecting road (text)
+Number of Pedestrians Injured: numeric 
+Number of Pedestrians Killed: numeric 
+Number of Cyclist Injured: numeric 
+Number of Cyclist Killed: numeric 
+Contributing Factor Vehicle 1: accident factor number 1 (for example, unspecified, failure to yield, passing too closely, unsafe speed, aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
+Contributing Factor Vehicle 2: accident factor number 2 (for example, unspecified, failure to yield, passing too closely, unsafe speed, aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
+Contributing Factor Vehicle 3: accident factor number 3 (for example, unspecified, failure to yield, passing too closely, unsafe speed, aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
+Collision_Id: a unique identification of each collision (numeric)
+Vehicle Type Code 1: type 1 of vehicle involved in the accident (for example, sedan, bus, pick-up, dump, station wagon, bike, e-scooter, ambulance, taxi, box van, etc.) (text)
+Vehicle Type Code 2: type 2 of vehicle involved in the accident (for example, sedan, bus, pick-up, dump, station wagon, bike, e-scooter, ambulance, taxi, box van, etc.) (text)
 
 ```{python}
 # The code chunk(s) in this section should include:
