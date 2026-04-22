@@ -1,6 +1,6 @@
 ---
-title: "Project Title here"
-author: "Group Member Names Here"
+title: "NYC - Motor Vehicle Collisions - Crashes"
+author: "Kim Mai, Cam Gordon, Ryan Steele"
 subtitle: "Final project for INST447, Spring 2026"
 format: html
 ---
