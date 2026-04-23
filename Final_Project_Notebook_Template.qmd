@@ -89,14 +89,12 @@ Longitude: numeric (decimals)
 On Street Name: the primary street (text)
 Cross Street Name: The nearest intersecting road (text)
 Number of Pedestrians Injured: numeric 
-Number of Pedestrians Killed: numeric 
+Number of Pedestrians Killed: numeric
 Number of Cyclist Injured: numeric 
 Number of Cyclist Killed: numeric 
 Contributing Factor Vehicle 1: accident factor number 1 (for example, unspecified, failure to yield, passing too closely, unsafe speed,
 aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
 Contributing Factor Vehicle 2: accident factor number 2 (for example, unspecified, failure to yield, passing too closely, unsafe speed,
-aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
-Contributing Factor Vehicle 3: accident factor number 3 (for example, unspecified, failure to yield, passing too closely, unsafe speed,
 aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.) (text)
 Collision_Id: a unique identification of each collision (numeric)
 Vehicle Type Code 1: type 1 of vehicle involved in the accident (for example, sedan, bus, pick-up, dump, station wagon, bike, e-scooter,
@@ -111,6 +109,43 @@ ambulance, taxi, box van, etc.) (text)
 # - code that accomplishes merging (if merging is performed)
 
 # The code should be well-documented, including how choices were made.
+
+import pandas as pd
+# ZIP CODE column contained mixed data types. Changed to string.     
+df = pd.read_csv(
+    "Motor_Vehicle_Collisions_-_Crashes (1).csv",
+    dtype={"ZIP CODE": str},
+    low_memory=False
+)
+
+df.head()
+df.info()
+df.isnull().sum().sort_values(ascending=False).head(10)
+
+# Columns that are relevant to the analysis, focusing on pedestrians and cyclist.
+relevant_columns = [
+    'CRASH DATE',
+    'CRASH TIME',
+    'LATITUDE',
+    'LONGITUDE',
+    'BOROUGH',
+    'ZIPCODE',
+    'ON STREET NAME',
+    'CROSS STREET NAME',
+    'NUMBER OF PEDESTRIANS INJURED',
+    'NUMBER OF PEDESTRIANS KILLED',
+    'NUMBER OF CYCLIST INJURED',
+    'NUMBER OF CYCLIST KILLED',
+    'CONTRIBUTING FACTOR VEHICLE 1',
+    'CONTRIBUTING FACTOR VEHICLE 2',
+    'COLLISION_ID',
+    'VEHICLE TYPE CODE 1',
+    'VEHICLE TYPE CODE 2'
+]
+
+df = df[relevant_columns]
+
+df.head()
 ```
 
 
