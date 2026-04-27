@@ -113,7 +113,7 @@ ambulance, taxi, box van, etc.) (text)
 import pandas as pd
 # ZIP CODE column contained mixed data types. Changed to string.     
 df = pd.read_csv(
-    "Motor_Vehicle_Collisions_-_Crashes (1).csv",
+    "Motor_Vehicle_Collisions.csv",
     dtype={"ZIP CODE": str},
     low_memory=False
 )
@@ -129,7 +129,7 @@ relevant_columns = [
     'LATITUDE',
     'LONGITUDE',
     'BOROUGH',
-    'ZIPCODE',
+    'ZIP CODE',
     'ON STREET NAME',
     'CROSS STREET NAME',
     'NUMBER OF PEDESTRIANS INJURED',
@@ -143,9 +143,10 @@ relevant_columns = [
     'VEHICLE TYPE CODE 2'
 ]
 
-df = df[relevant_columns]
+NYC_df = df[relevant_columns]
 
-df.head()
+NYC_df.head()
+print(len(NYC_df))
 ```
 
 
@@ -176,6 +177,7 @@ You are encouraged to structure this major section into subsections as you wish,
 The text in this section includes:
 
 - what transformations/manipulations did you apply beyond the initial extraction/formatting/merging?
+
 - why did you do these things?
 
 ```{python}
@@ -186,6 +188,48 @@ The text in this section includes:
 
 # Documentation/explanation for the code should be in the Markdown
 # text portions, not primarily in comments.
+
+df_clean = NYC_df.copy()
+
+# Keep only Brooklyn and Manhattan
+df_clean = df_clean[df_clean['BOROUGH'].isin(['BROOKLYN', 'MANHATTAN'])]
+df_clean.head()
+
+# Target accidents involved pedestrians or cyclists only
+ped_cyc_accidents = (
+    (df_clean['NUMBER OF PEDESTRIANS INJURED'] > 0) |
+    (df_clean['NUMBER OF PEDESTRIANS KILLED'] > 0) |
+    (df_clean['NUMBER OF CYCLIST INJURED'] > 0) |
+    (df_clean['NUMBER OF CYCLIST KILLED'] > 0)
+)
+df_clean = df_clean[ped_cyc_accidents]
+print(len(df_clean))
+
+# Drop missing rows of Latitude and Longitude
+df_clean = df_clean.dropna(subset=['LATITUDE', 'LONGITUDE'])
+
+# Combine date and time, and convert to datetime object
+df_clean['DATETIME'] = pd.to_datetime(df_clean['CRASH DATE'] + ' ' + df_clean['CRASH TIME'])
+# Extract components
+df_clean['YEAR'] = df_clean['DATETIME'].dt.year
+df_clean['MONTH'] = df_clean['DATETIME'].dt.month
+df_clean['DAY_OF_WEEK'] = df_clean['DATETIME'].dt.day_name()
+df_clean['HOUR'] = df_clean['DATETIME'].dt.hour
+
+# Drop the original CRASH DATE and CRASH TIME 
+df_clean = df_clean.drop(columns=['CRASH DATE', 'CRASH TIME'])
+df_clean.head()
+
+# Create a total count for the target groups
+df_clean['TOTAL_PED_CYC_CASUALTIES'] = (
+    df_clean['NUMBER OF PEDESTRIANS INJURED'] +
+    df_clean['NUMBER OF PEDESTRIANS KILLED'] +
+    df_clean['NUMBER OF CYCLIST INJURED'] +
+    df_clean['NUMBER OF CYCLIST KILLED']
+)
+
+df_clean.info()
+#
 
 ```
 
