@@ -177,8 +177,19 @@ You are encouraged to structure this major section into subsections as you wish,
 The text in this section includes:
 
 - what transformations/manipulations did you apply beyond the initial extraction/formatting/merging?
-
 - why did you do these things?
+
+In this section, we narrowed down our dataset, focusing only on accidents in the Brooklyn and Manhattan areas. Next, we sorted out the records 
+that involved either pedestrians or cyclists, where the number of injured/killed was greater than 0. This is because, the original dataset contained
+millions of records, so we want to narrow down our analysis scope, helping us to produce a stronger analysis, as well as better analyze the current trends 
+in a specific area. Next, we also dropped the missing values of the location coordinators because we want to look for the hotspot in those boroughs. 
+Therefore, records with missing values of the location coordinators would not help us to identify the hotspots, and further create noise while analyzing our dataset. 
+The next thing we transformed was the date and time records. In the original dataset, date and time were separated into two columns and assigned as a string variable. 
+Then, we grouped these columns into one called DATETIME, and converted them into a datetime object. Additionally, we broke them down into day, month, year, and hour
+into different columns to make it more accessible to extract from the dataset and easier to identify data trends. Because we already created new datetime columns 
+in our dataset, we decided to get rid of the original Crash Date and Crash Time columns, making our dataset consistent and concise. 
+Finally, we created a new column named total_ped_cyc_casualities to display the total number of pedestrians and cyclists injured and killed in each accident.  
+
 
 ```{python}
 # The code chunk(s) in this section should include:
