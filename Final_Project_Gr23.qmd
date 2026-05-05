@@ -37,7 +37,12 @@ Department of Transportation to develop plans to improve traffic safety, protect
 these specific areas. 
 
 - conclusions/final discussion
-
+In conclusion, the intended purpose for this project is to provide data analysts and urban planners a "ready to use" tool to support their 
+work in identifying the hotspots and behavioral trends of accidents, and resource allocation for the NYC areas, especially, Manhattan and 
+Brooklyn. First, we narrowed down our research scope to only focus on two targeted boroughs. By sorting out the targeted data points, we 
+reduced the dataset from millions of records down to approximately (...number...) records. Besides that, the original dataset contained 
+null and missing values from incompleted accident reports, so we dropped all missing records to avoid data noise or outlier while analyzing
+or visualizing data trends. 
 
 # Source(s) & Extraction
 
