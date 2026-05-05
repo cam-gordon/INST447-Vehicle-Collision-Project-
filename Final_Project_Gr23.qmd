@@ -41,8 +41,18 @@ In conclusion, the intended purpose for this project is to provide data analysts
 work in identifying the hotspots and behavioral trends of accidents, and resource allocation for the NYC areas, especially, Manhattan and 
 Brooklyn. First, we narrowed down our research scope to only focus on two targeted boroughs. By sorting out the targeted data points, we 
 reduced the dataset from millions of records down to approximately (...number...) records. Besides that, the original dataset contained 
-null and missing values from incompleted accident reports, so we dropped all missing records to avoid data noise or outlier while analyzing
-or visualizing data trends. 
+null and missing values from incompleted accident reports, so we dropped all missing records to avoid data noise or outliers while analyzing
+or visualizing data trends. We also wanted to ensure that there are no null values in latitude and longitude because they are important 
+attributes that allow our stakeholders to determine the hotspots. Stakeholders can use these coordinators to spot danger locations on maps, 
+as well as using them to develop safety policy. Once again, we only targeted pedestrians and cyclists to improve walking and biking safety 
+in Manhattan and Brooklyn areas. Next, we broke down the date and time into separated columns, instead of keeping them together like the 
+original dataset. We wanted to make our dataset more accessible to our stakeholders to use in examine and creating research reports, so we 
+broke date and time data records into year, month, day, and hour, so that, our stakeholders can use them to identify "rush hours" in the 
+targeted boroughs. Finally, we created an ERD for our dataset and a database script using MySQL Workbench. Our ERD (Enitity-Relationship 
+Diagram) provides a visual map to our audience, giving them an idea of the database structure that data analysts and their clients can 
+easy to understand without technical skills. Besides the ERD, our team also provides a database script (created from the ERD) using MySQL 
+that allows our stakeholders to physically create, change, and manage the database on the server conveniently while working with and 
+examine our dataset. 
 
 # Source(s) & Extraction
 
