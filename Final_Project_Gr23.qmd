@@ -396,8 +396,8 @@ casualties = pd.DataFrame({
         df_clean['COLLISION_ID']
 })
 
-
-# Exporting tables to csvs
+# Extra Mile
+# Exporting tables to CSVs
 
 locations.to_csv("locations.csv", index=False)
 
@@ -431,7 +431,6 @@ print("All database CSV files exported successfully.")
 # Extra Mile
 
 - Create ERD and database for our dataset
-- Create CSV files to import the data into our dataset
 
 ![NYC Vehicle Collisions ERD](NYC_Vehicle_collisions.png)
 
