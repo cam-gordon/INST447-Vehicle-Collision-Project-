@@ -276,6 +276,9 @@ The text in this section includes:
 # The code chunk(s) in this section should include:
 # - The code needed to "finalize" or "export" the final data product.
 
+#Main CSV
+df_clean.to_csv("NYC_Collisions_Cleaned.csv", index=False)
+
 # Location table
 locations = df_clean[[
     'ZIP CODE',
