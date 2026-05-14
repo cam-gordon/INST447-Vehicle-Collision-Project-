@@ -276,6 +276,155 @@ The text in this section includes:
 # The code chunk(s) in this section should include:
 # - The code needed to "finalize" or "export" the final data product.
 
+# Location table
+locations = df_clean[[
+    'ZIP CODE',
+    'LATITUDE',
+    'LONGITUDE',
+    'ON STREET NAME',
+    'CROSS STREET NAME',
+    'BOROUGH'
+]].copy()
+
+# Location_id
+locations = locations.drop_duplicates().reset_index(drop=True)
+locations['location_id'] = locations.index + 1
+
+# Merging location_id back into main dataframe
+df_clean = df_clean.merge(
+    locations,
+    on=[
+        'ZIP CODE',
+        'LATITUDE',
+        'LONGITUDE',
+        'ON STREET NAME',
+        'CROSS STREET NAME',
+        'BOROUGH'
+    ],
+    how='left'
+)
+
+# Collisions table
+collisions = df_clean[[
+    'COLLISION_ID',
+    'DATETIME',
+    'YEAR',
+    'MONTH',
+    'DAY_OF_WEEK',
+    'HOUR',
+    'location_id'
+]].copy()
+
+# Contributing factors table
+factor_values = pd.concat([
+    df_clean['CONTRIBUTING FACTOR VEHICLE 1'],
+    df_clean['CONTRIBUTING FACTOR VEHICLE 2']
+]).dropna().unique()
+
+contribute_factors = pd.DataFrame({
+    'contribute_factor_name': factor_values
+})
+
+contribute_factors['contribute_factor_id'] = (
+    contribute_factors.index + 1
+)
+
+# Collision_factors bridge table
+collision_factors = []
+
+factor_lookup = dict(zip(
+    contribute_factors['contribute_factor_name'],
+    contribute_factors['contribute_factor_id']
+))
+
+for _, row in df_clean.iterrows():
+    
+    factor1 = row['CONTRIBUTING FACTOR VEHICLE 1']
+    factor2 = row['CONTRIBUTING FACTOR VEHICLE 2']
+    
+    if pd.notna(factor1):
+        collision_factors.append({
+            'collision_id': row['COLLISION_ID'],
+            'factor_id': factor_lookup[factor1]
+        })
+        
+    if pd.notna(factor2):
+        collision_factors.append({
+            'collision_id': row['COLLISION_ID'],
+            'factor_id': factor_lookup[factor2]
+        })
+
+collision_factors = pd.DataFrame(collision_factors).drop_duplicates()
+
+# Vehicle table
+vehicle_data = []
+
+for _, row in df_clean.iterrows():
+    
+    if pd.notna(row['VEHICLE TYPE CODE 1']):
+        vehicle_data.append({
+            'vehicle_type': row['VEHICLE TYPE CODE 1'],
+            'collision_id': row['COLLISION_ID']
+        })
+        
+    if pd.notna(row['VEHICLE TYPE CODE 2']):
+        vehicle_data.append({
+            'vehicle_type': row['VEHICLE TYPE CODE 2'],
+            'collision_id': row['COLLISION_ID']
+        })
+
+vehicle_involved = pd.DataFrame(vehicle_data)
+
+vehicle_involved['vehicle_type_id'] = (
+    vehicle_involved.index + 1
+)
+
+# Casualties table
+casualties = pd.DataFrame({
+    'casualty_id': range(1, len(df_clean) + 1),
+    'pedestrians_injured':
+        df_clean['NUMBER OF PEDESTRIANS INJURED'],
+    'pedestrians_killed':
+        df_clean['NUMBER OF PEDESTRIANS KILLED'],
+    'cyclists_injured':
+        df_clean['NUMBER OF CYCLIST INJURED'],
+    'cyclists_killed':
+        df_clean['NUMBER OF CYCLIST KILLED'],
+    'total_ped_cyc_casualties':
+        df_clean['TOTAL_PED_CYC_CASUALTIES'],
+    'collision_id':
+        df_clean['COLLISION_ID']
+})
+
+
+# Exporting tables to csvs
+
+locations.to_csv("locations.csv", index=False)
+
+collisions.to_csv("collisions.csv", index=False)
+
+contribute_factors.to_csv(
+    "contribute_factors.csv",
+    index=False
+)
+
+collision_factors.to_csv(
+    "collision_factors.csv",
+    index=False
+)
+
+vehicle_involved.to_csv(
+    "vehicle_involved.csv",
+    index=False
+)
+
+casualties.to_csv(
+    "casualties.csv",
+    index=False
+)
+
+print("All database CSV files exported successfully.")
+
 ```
 
 
