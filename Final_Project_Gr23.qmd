@@ -272,6 +272,124 @@ The text in this section includes:
 - general info and description on each variable/column in the data product
   - note: the descriptive stats, etc. should already be in the Analysis section, but if there are any new/transformed variables that were not in that section, those should have descriptive stats and plots here
 
+Final Product & Description:
+The final data product is a cleaned and transformed dataset focused specifically on pedestrian and cyclist collisions within the Brooklyn and Manhattan boroughs of New York City. The dataset was designed for urban planners and data analysts who need a structured and accessible resource for identifying traffic safety hotspots and collision trends.
+
+The final data product is exported as:
+
+-A main CSV file containing the cleaned dataset.
+-Multiple CSV files aligned with the relational database schema for the ERD.
+
+These CSV files can be directly imported into MySQL, PostgreSQL, SQLite, or other relational database systems.
+
+Guide:
+
+Primary Dataset:
+NYC_Collisions_Cleaned.csv
+
+This dataset is intended for hotspot analysis, visualization and mapping, public safety trend analysis, and transportation planning research. The dataset was filtered to include only Brooklyn and Manhattan records, include only collisions involving injured or killed pedestrians/cyclists, remove rows with missing latitude or longitude values, and create new time-based analysis variables.
+
+-LATITUDE: coordinate 
+-LONGITUDE: coordinate
+-BOROUGH: 2 out of 5 districts of NYC, including Brooklyn and Manhattan
+-ZIP CODE: zip code number
+-ON STREET NAME: the primary street
+-CROSS STREET NAME: The nearest intersecting road
+-NUMBER OF PREDESTRIANS INJURED: number
+-NUMBER OF PEDESTRIANS KILLED: number
+-NUMBER OF CYCLIST INJURED: number
+-NUMBER OF CYCLIST KILLED: number
+-CONTRIBUTING FACTOR VEHICLE 1: accident factor number 1 (for example, unspecified, failure to yield, passing too closely, unsafe speed, aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.)
+-CONTRIBUTING FACTOR VEHICLE 2: accident factor number 1 (for example, unspecified, failure to yield, passing too closely, unsafe speed, aggressive driving/road rage, following too closely, driver inattention/distraction, accelerator defective, etc.)
+-COLIISION_ID: a unique identification of each collision 
+-VEHICLE TYPE CODE 1: type of vehicle involved in the accident (for example, sedan, bus, pick-up, dump, station wagon, bike, e-scooter,
+ambulance, taxi, box van, etc.)
+-VEHICLE TYPE CODE 2: type of vehicle involved in the accident (for example, sedan, bus, pick-up, dump, station wagon, bike, e-scooter,
+ambulance, taxi, box van, etc.)
+-DATETIME: full date and time
+-YEAR: the year
+-MONTH: the month
+-DAY OF WEEK: week day name
+-HOUR: number
+-TOTAL_PED_CYC_CASUALITIES: combined casualties 
+-location_id_x: number
+-location_id_y: number
+
+Normalized CSVs:
+1. locations.csv
+Contains unique collision locations.
+
+-LATITUDE: coordinate 
+-LONGITUDE: coordinate
+-BOROUGH: 2 out of 5 districts of NYC, including Brooklyn and Manhattan
+-ZIP CODE: zip code number
+-ON STREET NAME: the primary street
+-CROSS STREET NAME: The nearest intersecting road
+-location_id: number
+
+2. collisions.csv
+Contains core collision event records.
+
+-COLIISION_ID: a unique identification of each collision 
+-YEAR: the year
+-MONTH: the month
+-DAY OF WEEK: week day name
+-HOUR: number
+-location_id: unique location identifier 
+
+3. contribute_factors.csv
+Contains unique contributing factors recorded by NYPD.
+
+-contribute_factor_name: type of contributing factor
+-contribute_factor_id: number associated 
+
+4. collision_factors.csv
+Bridge table connecting collisions and contributing factors.
+
+-collision_id: a unique identification of each collision
+-factor_id: number
+
+5. vehicle_involved.csv
+Contains vehicle types associated with each collision.
+
+-vehicle_type: the types of vehicles
+-collision_id: a unique identification of each collision
+-vehicle_type_id: unique vehicle identifier
+
+6. casualties.csv
+Contains pedestrian and cyclist casualty counts.
+
+-collision_id: a unique identification of each collision
+-pedestrians_injured: number
+-pedestrians_killed: number
+-cyclist_injured: number
+-cyclist_killed: number
+-total_ped_cyc_killed: number of combined casualties 
+
+How to Access and Use the Data:
+All CSV files can be opened directly in Microsoft Excel.
+-Open Excel
+-Select File → Open
+-Choose the desired CSV file
+
+Using Python:
+-Import pandas
+-read_csv for your desired CSV file
+
+Using SQL:
+-Pick your platform (MySQL Workbench, SQLite, etc.)
+-Database schema
+-Run SQL script
+-Import each CSV file into its matching table
+-Use SQL queries
+
+For Stakeholders:
+-Identify high risk intersections
+-Detect pedestrian and cyclist collision hotspots
+-Analyze rush-hour safety trends
+-Evaluate dangerous contributing behaviors
+-Support traffic safety policy recommendations
+
 ```{python}
 # The code chunk(s) in this section should include:
 # - The code needed to "finalize" or "export" the final data product.
