@@ -432,7 +432,6 @@ print("All database CSV files exported successfully.")
 
 - Create ERD and database for our dataset
 - Create CSV files to import the data into our dataset
-- Create sample tables using SQL queries
 
 ![NYC Vehicle Collisions ERD](NYC_Vehicle_collisions.png)
 
