@@ -198,7 +198,8 @@ for col in numeric_cols:
     print(df_clean[col].describe())
     print(f"Null Count: {df_clean[col].isnull().sum()}")
 ```
-Latitude and Longitude both had erraneous (0,0) values, which distort both means. Thus, the visualizations for each were filtered to only include values > 1, code for the histograms given below:
+Latitude and Longitude both had erraneous (0,0) values, which distort both means. 
+Thus, the visualizations for each were filtered to only include values > 1, code for the histograms given below:
 ```
 # Lat/Long Historgrams
 import matplotlib.pyplot as plt
@@ -215,11 +216,23 @@ plt.xlabel('Longitude')
 plt.ylabel('Count')
 plt.show()
 ```
-The resulting histograms depict unimodal distributions, centered around latitude: 40.69, longitude: -73.96. This is a stark contrast between the means without filtering, where mean (latitude) = 40.46 and mean (longitude) = -73.53. Both of these means do not fall under the filtered distributions and indicate a significant skewing due to data quality issues.
+The resulting histograms depict unimodal distributions, centered around latitude: 40.69, longitude: -73.96. 
+This is a stark contrast between the means without filtering, where mean (latitude) = 40.46 and mean (longitude) = -73.53. 
+Both of these means do not fall under the filtered distributions and indicate a significant skewing due to data quality issues.
 
-Both NUMBER OF PEDESTRIAN INJURED and NUMBER OF CYCLIST INJURED have similar distributions. Since data was filtered for records with either pedestrian and/or cyclist casualties, most pedestrian/cyclist injury counts are either zero or one. However, pedestrian injured has a mean of ~0.649 and a median of 1.0, while cyclist injured has a mean and median of ~0.375 and 0.0, respectively. This indicates a greater prevalence of pedestrian-motor vehicle accidents than cyclist-motor vehicle accidents. Pedestrians injured had a striking outlier of 27, likely a catastrophic event. The maximum cyclists injured in the data was four, a large but much less eye-catching number.
+Both NUMBER OF PEDESTRIAN INJURED and NUMBER OF CYCLIST INJURED have similar distributions. 
+Since data was filtered for records with either pedestrian and/or cyclist casualties, most pedestrian/cyclist injury counts are either zero or one. 
+However, pedestrian injured has a mean of ~0.649 and a median of 1.0, while cyclist injured has a mean and median of ~0.375 and 0.0, respectively. 
+This indicates a greater prevalence of pedestrian-motor vehicle accidents than cyclist-motor vehicle accidents. 
+Pedestrians injured had a striking outlier of 27, likely a catastrophic event. 
+The maximum cyclists injured in the data was four, a large but much less eye-catching number.
 
-Both NUMBER OF PEDESTRIAN KILLED and NUMBER OF CYCLIST KILLED also expectedly had similar distributions. Pedestrain killed mean of ~0.006 and cyclist killed mean of ~0.001 indicate a very rare mortality rate among motor vehicle-pedestrian/cyclist accidents. Again, a slightly higher mean for pedestrians likely is due to the higher volume of pedestrian-motor vehicle accident data in the dataset. Pedestrians killed had a much higher maximum value again with six, potentially occuring in the same event as the 27 injuries. Cyclists killed had a maximum of 2, a much more tame number. The code for the histograms for NUMBER OF PEDESTRIAN INJURED, NUMBER OF PEDESTRIAN KILLED, NUMBER OF CYCLIST INJURED, and NUMBER OF CYLCIST KILLED is pasted below:
+Both NUMBER OF PEDESTRIAN KILLED and NUMBER OF CYCLIST KILLED also expectedly had similar distributions. 
+Pedestrain killed mean of ~0.006 and cyclist killed mean of ~0.001 indicate a very rare mortality rate among motor vehicle-pedestrian/cyclist accidents. 
+Again, a slightly higher mean for pedestrians likely is due to the higher volume of pedestrian-motor vehicle accident data in the dataset.
+Pedestrians killed had a much higher maximum value again with six, potentially occuring in the same event as the 27 injuries. 
+Cyclists killed had a maximum of 2, a much more tame number. 
+The code for the histograms for NUMBER OF PEDESTRIAN INJURED, NUMBER OF PEDESTRIAN KILLED, NUMBER OF CYCLIST INJURED, and NUMBER OF CYLCIST KILLED is pasted below:
 ```
 # Number of Pedestrians Injured/Killed Histograms
 
@@ -251,9 +264,15 @@ plt.xlabel('Number Killed')
 plt.ylabel('Count')
 plt.show()
 ```
-Values for the injured distributions cluster around 0-1. The pedestrians injured variable has a much higher volume of points at injured=1, compared to that of the cyclist injured variable. Since each record in the dataframe has at least one pedestrian injured/killed and/or one cyclist injured/killed, this difference is attributed to the much higher prevalence of pedestrian incidents in the data. The number of pedestrians/cyclist killed distributions are nearly identicle, where the overwhelming majority of data points at number killed = 0. Values greater than zero are outliers, as most incidents in the data are not fatal.
+Values for the injured distributions cluster around 0-1. The pedestrians injured variable has a much higher volume of points at injured=1, compared to that of the cyclist injured variable. 
+Since each record in the dataframe has at least one pedestrian injured/killed and/or one cyclist injured/killed, this difference is attributed to the much higher prevalence of pedestrian incidents in the data. 
+The number of pedestrians/cyclist killed distributions are nearly identicle, where the overwhelming majority of data points at number killed = 0. Values greater than zero are outliers, as most incidents in the data are not fatal.
 
-The final numeric variable, TOTAL_PED_CYC_CASUALTIES, is an aggregate of the pedestrian injured/killed and cyclist injured/killed variables written about above. Thus, its summary statistics are expected—the overwhelming majority of indicents have one pedestrian/cyclist casualty, which is proven with the mean of ~1.03. The maximum value for this variable is 28, which coincides with the 27 pedestrians injured outlier from before. Most likely, this event contained 27 pedestrian injuries and one fatality. The visualization depicts a majority value of one with a very small amount of total casualties at 2. Code for this visualization is below:
+The final numeric variable, TOTAL_PED_CYC_CASUALTIES, is an aggregate of the pedestrian injured/killed and cyclist injured/killed variables written about above. 
+Thus, its summary statistics are expected—the overwhelming majority of indicents have one pedestrian/cyclist casualty, which is proven with the mean of ~1.03. 
+The maximum value for this variable is 28, which coincides with the 27 pedestrians injured outlier from before. Most likely, this event contained 27 pedestrian injuries and one fatality. 
+The visualization depicts a majority value of one with a very small amount of total casualties at 2. 
+Code for this visualization is below:
 ```
 # Total Ped/Cyc Casualties Histogram
 
@@ -273,11 +292,18 @@ for col in cat_cols:
     print(df_clean[col].value_counts())
     print(f"Null Count: {df_clean[col].isnull().sum()}")
 ```
-The YEAR distribution is bidmodal, with peaks around 2013 and 2025. This is more likely due to the dip around 2020, as less people were on the road during the pandemic. Both 2012 and 2026 have significantly low record amounts because the data for 2012 starts mid-year, and 2026 is incomplete because there is only a few months of data so far. The code for this distribution is below:
+The YEAR distribution is bidmodal, with peaks around 2013 and 2025. This is more likely due to the dip around 2020, as less people were on the road during the pandemic. 
+Both 2012 and 2026 have significantly low record amounts because the data for 2012 starts mid-year, and 2026 is incomplete because there is only a few months of data so far. 
+The code for this distribution is below:
 
-The MONTH distribution has higher incident counts in warmer months, specifically May through October, with a noticeable dropoff in Winter months. This is likely because there are more pedestrians and cyclists around when the weather is warmer. October has the largest amount of accidents, while February has the lowest.
+The MONTH distribution has higher incident counts in warmer months, specifically May through October, with a noticeable dropoff in Winter months. 
+This is likely because there are more pedestrians and cyclists around when the weather is warmer. 
+October has the largest amount of accidents, while February has the lowest.
 
-The HOUR distribution is unimodal and skewed-left, peaking around 5-7 pm. This coincides with rush hour, as many New Yorkers are driving home from work so there are plenty of vehicles on the road. There is also a smaller, noticable peak around 8 am for likely the same reason (people driving to work). The code for the barplots for YEAR, MONTH, and HOUR is below:
+The HOUR distribution is unimodal and skewed-left, peaking around 5-7 pm. 
+This coincides with rush hour, as many New Yorkers are driving home from work so there are plenty of vehicles on the road. 
+There is also a smaller, noticable peak around 8 am for likely the same reason (people driving to work). 
+The code for the barplots for YEAR, MONTH, and HOUR is below:
 ```
 # Year/Month/Hour Barplots
 
@@ -299,7 +325,9 @@ plt.xlabel('Hour')
 plt.ylabel('Count')
 plt.show()
 ```
-The BOROUGH variables is binary, either Brooklyn or Manhattan. There is a significantly higher volume of incidents in Brooklyn than Manhattan (55,205 vs. 39,050). This may be due to a difference in population, as roughly a million more people live in Brooklyn than Manhattan. The code for the barplot for this variable is below.
+The BOROUGH variables is binary, either Brooklyn or Manhattan. There is a significantly higher volume of incidents in Brooklyn than Manhattan (55,205 vs. 39,050). 
+This may be due to a difference in population, as roughly a million more people live in Brooklyn than Manhattan. 
+The code for the barplot for this variable is below.
 ```
 # Borough Barplot
 
@@ -310,7 +338,9 @@ plt.ylabel('Count')
 plt.xticks(rotation=0)
 plt.show()
 ```
-The DAY_OF_WEEK variable reinforces the increase in incidents due to commuters/work traffic, as incident counts during the week are much higher than those during the weekend. Specifically, incident counts peak on Friday and dip the lowest on Sunday. Code for this barplot is below.
+The DAY_OF_WEEK variable reinforces the increase in incidents due to commuters/work traffic, as incident counts during the week are much higher than those during the weekend. 
+Specifically, incident counts peak on Friday and dip the lowest on Sunday. 
+Code for this barplot is below.
 ```
 # Day of Week Barplot
 
@@ -322,9 +352,17 @@ plt.ylabel('Count')
 plt.xticks(rotation=45, ha='right')
 plt.show()
 ```
-The CONTRIBUTING FACTOR VEHICLE 1 variable has a large portion of incidents labeled "unspecified" with 32,322 counts out of the total 94,255 records. On top of that, this variable has 2190 null values. Together, this represents a huge data quality issue, with about one-third missing the major contributing factor. Outside of these issues, leading factors include "Driver Inattention/Distraction" (20,655) and "Failure to Yield Right-Of-Way" (14,508). These two factors tower over the rest, indicating the leading causes of these motor vehicle-pedestrian/cyclist incidents is due to pure human error. Some other highly-talked about factors came in at: Unsafe Speed (1,091), Alcohol Involvement (516), Drugs (Illegal) (21).
+The CONTRIBUTING FACTOR VEHICLE 1 variable has a large portion of incidents labeled "unspecified" with 32,322 counts out of the total 94,255 records. 
+On top of that, this variable has 2190 null values. Together, this represents a huge data quality issue, with about one-third missing the major contributing factor. 
+Outside of these issues, leading factors include "Driver Inattention/Distraction" (20,655) and "Failure to Yield Right-Of-Way" (14,508). 
+These two factors tower over the rest, indicating the leading causes of these motor vehicle-pedestrian/cyclist incidents is due to pure human error. 
+Some other highly-talked about factors came in at: Unsafe Speed (1,091), Alcohol Involvement (516), Drugs (Illegal) (21).
 
-CONTRIBUTING FACTOR VEHICLE 2 follows a similar distribution of factors, again dominated by "Unspecified". This variable also has 59,218 null values, likely due to a lack of a second factor or second party at fault. If a car hits a pedestrian or cyclist because they weren't paying attention, factor 1 would be "Driver Inattention/Distraction" and factor 2 would be left blank (assuming the pedestrian/cyclist wasn't at fault). Therefore, this high null count makes sense. The code for the barplots for both CONTRIBUTING FACTOR VEHICLE 1 and CONTRIBUTING FACTOR VEHICLE 2 is pasted below:
+CONTRIBUTING FACTOR VEHICLE 2 follows a similar distribution of factors, again dominated by "Unspecified". 
+This variable also has 59,218 null values, likely due to a lack of a second factor or second party at fault. 
+If a car hits a pedestrian or cyclist because they weren't paying attention, factor 1 would be "Driver Inattention/Distraction" and factor 2 would be left blank (assuming the pedestrian/cyclist wasn't at fault). 
+Therefore, this high null count makes sense. 
+The code for the barplots for both CONTRIBUTING FACTOR VEHICLE 1 and CONTRIBUTING FACTOR VEHICLE 2 is pasted below:
 ```
 # Contributing Factor Vehicle 1 Barplot (Top 10 Only)
 
@@ -346,9 +384,17 @@ plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.show()
 ```
-The VEHICLE TYPE CODE 1 variable is dominated by sedans (21,007) and SUVs (18,150). However there are clear inconsistancies in the data, as many similar or identicle vehicle types are labeled differently. For example, "Station Wagon/Sport Utility Vehicle" and "Sport Utility" are different labels. On top of that, there are 4,323 null values for this variable. It appears that there are many data inconsistencies for vehicle type 1. The only meaningful insight I can gather from this data is that motor vehicle-pedestrian/cyclist collisions are much more prevelent among civilian vehicles (sedans, SUVs) than commercial vehicles (Taxis, Vans, Trucks).
+The VEHICLE TYPE CODE 1 variable is dominated by sedans (21,007) and SUVs (18,150). 
+However there are clear inconsistancies in the data, as many similar or identicle vehicle types are labeled differently. 
+For example, "Station Wagon/Sport Utility Vehicle" and "Sport Utility" are different labels. 
+On top of that, there are 4,323 null values for this variable. It appears that there are many data inconsistencies for vehicle type 1. 
+The only meaningful insight I can gather from this data is that motor vehicle-pedestrian/cyclist collisions are much more prevelent among civilian vehicles (sedans, SUVs) than commercial vehicles (Taxis, Vans, Trucks).
 
-VEHICLE TYPE CODE 2 is largely dominated by bikes, as most incident reports list the motor vehicle as "vehicle 1" and the bike as "vehicle 2", with some exceptions (sometimes bike is listed as vehicle 1; assume null counts for vehicle 2 are for motor-vehicle-pedestrian incidents). Again, there are major data limitations here, as the two most prevalent vehicle 2's are "Bike" (16,019) and "BICYCLE" (9322). "E-Bike" is fifth with 1,661. The code for the barplots for both VEHICLE TYPE CODE 1 and VEHICLE TYPE CODE 2 is below.
+VEHICLE TYPE CODE 2 is largely dominated by bikes, as most incident reports list the motor vehicle as "vehicle 1" and the bike as "vehicle 2",
+with some exceptions (sometimes bike is listed as vehicle 1; assume null counts for vehicle 2 are for motor-vehicle-pedestrian incidents).
+Again, there are major data limitations here, as the two most prevalent vehicle 2's are "Bike" (16,019) and "BICYCLE" (9322). 
+"E-Bike" is fifth with 1,661. 
+The code for the barplots for both VEHICLE TYPE CODE 1 and VEHICLE TYPE CODE 2 is below.
 ```
 # Vehicle Type 1 Barplot (Top 15 Only)
 
@@ -372,7 +418,10 @@ plt.show()
 ```
 
 - Data Relationship Exploration
-The relationship between count of accidents, hour, and borough was explored. First, a cross-tabulation was creating comparing counts of accidents for each hour of the day between Brooklyn and Manhattan. Then, a barplot of the cross-tabulation was created to visualize the results. The code for both is below.
+The relationship between count of accidents, hour, and borough was explored. 
+First, a cross-tabulation was creating comparing counts of accidents for each hour of the day between Brooklyn and Manhattan. 
+Then, a barplot of the cross-tabulation was created to visualize the results. 
+The code for both is below.
 ```
 # Data Relationship: Number of Accidents by Hour and Borough
 # Cross-Tabulation
@@ -388,10 +437,16 @@ plt.xlabel('Hour')
 plt.ylabel('Number of Accidents')
 plt.show()
 ```
-The resulting distributions for both boroughs follow the same distribution, peaking during evening rush hour and having a smaller peak in morning commuting traffic. Brooklyn outnumbers Manhattan across the board due to the higher volume of incidents in the database from that borough. One intersting observation in the distribution is a convergence during the overnight hours. From 2-4 am, Manhattan overtakes Brooklyn in number of incidents, despite the smaller number of overall volume. This may be due to a larger volume of commuter traffic in Brooklyn, but a similar baseline, as overnight traffic numbers are nearly equal.
+The resulting distributions for both boroughs follow the same distribution, peaking during evening rush hour and having a smaller peak in morning commuting traffic. 
+Brooklyn outnumbers Manhattan across the board due to the higher volume of incidents in the database from that borough. 
+One intersting observation in the distribution is a convergence during the overnight hours. 
+From 2-4 am, Manhattan overtakes Brooklyn in number of incidents, despite the smaller number of overall volume. 
+This may be due to a larger volume of commuter traffic in Brooklyn, but a similar baseline, as overnight traffic numbers are nearly equal.
 
 - Exploring Bias
-One clear instance of bias/data quality discovered earlier was the large amount of incident factors labeled "Unspecified". So, null counts and "unspecified" counts were combined for both CONTRIBUTING FACTOR VEHICLE 1 and CONTRIBUTING FACTOR VEHICLE 2. The code for this is below.
+One clear instance of bias/data quality discovered earlier was the large amount of incident factors labeled "Unspecified". 
+So, null counts and "unspecified" counts were combined for both CONTRIBUTING FACTOR VEHICLE 1 and CONTRIBUTING FACTOR VEHICLE 2. 
+The code for this is below.
 ```
 # Bias Analysis
 
@@ -411,9 +466,15 @@ missing_cf2 = df_clean['CONTRIBUTING FACTOR VEHICLE 2'].isnull().sum() + \
 print(f"CF Vehicle 1 missing + unspecified: {missing_cf1} ({missing_cf1/len(df_clean)*100:.1f}%)")
 print(f"CF Vehicle 2 missing + unspecified: {missing_cf2} ({missing_cf2/len(df_clean)*100:.1f}%)")
 ```
-The results were as follows: Factor 1 (34,512 total, 36.6%); Factor 2 (86,264, 91.5%). These numbers are incredibly high and worth-noting for future analysis. Factor 2 at 91.5% means that variable is likely unusable in future analysis. However, this is likely due to the fact that one party is typically at fault (Contributing factor vehicle 1), therefore the second factor is left blank. Overall, this gap in data may be an issue worth considering in the future.
+The results were as follows: Factor 1 (34,512 total, 36.6%); Factor 2 (86,264, 91.5%). 
+These numbers are incredibly high and worth-noting for future analysis. 
+Factor 2 at 91.5% means that variable is likely unusable in future analysis. 
+However, this is likely due to the fact that one party is typically at fault (Contributing factor vehicle 1), therefore the second factor is left blank. 
+Overall, this gap in data may be an issue worth considering in the future.
 
-The balance between the two boroughs in the dataset, Manhattan and Brooklyn, was also analyzed by finding the total number of records for each and the resulting ratio between the two. The code for this is below.
+The balance between the two boroughs in the dataset, Manhattan and Brooklyn, 
+was also analyzed by finding the total number of records for each and the resulting ratio between the two. 
+The code for this is below.
 ```
 # Balance of Relevant Groups
 
@@ -429,9 +490,15 @@ manhattan = df_clean['BOROUGH'].value_counts()['MANHATTAN']
 print(f"Accident ratio Brooklyn:Manhattan = {brooklyn/manhattan:.2f}:1")
 print(f"Population ratio Brooklyn:Manhattan = ~1.63:1")
 ```
-Brooklyn has 55,205 records in the dataframe, while Manhattan has only 39,050, which comes out to a ratio of 1.41-1. This was expected, however, the actual population ration between the two boroughs is roughly 1.63-1, indicating that Manhattan is actually slightly over-represented in the data. This could be due to a higher pedestrian and cyclist population in Manhattan than in Brooklyn. Another consideration is the fact that Central Park is located in Manhattan, a hub of outdoor activity in the dense urban environment that is New York City.
+Brooklyn has 55,205 records in the dataframe, while Manhattan has only 39,050, which comes out to a ratio of 1.41-1. 
+This was expected, however, the actual population ration between the two boroughs is roughly 1.63-1, 
+indicating that Manhattan is actually slightly over-represented in the data. 
+This could be due to a higher pedestrian and cyclist population in Manhattan than in Brooklyn. 
+Another consideration is the fact that Central Park is located in Manhattan, 
+a hub of outdoor activity in the dense urban environment that is New York City.
 
-Finally, some data relationship were evaluated for bias: Missing contributing factors by borough and missing lat/long by borough. The code for each of these is pasted below.
+Finally, some data relationship were evaluated for bias: Missing contributing factors by borough and missing lat/long by borough. 
+The code for each of these is pasted below.
 ```
 # Relationships that might indicate bias
 
@@ -445,7 +512,10 @@ pd.crosstab(cf1_missing, df_clean['BOROUGH'], normalize='columns')
 bad_coords = df_clean[(df_clean['LATITUDE'] == 0) | (df_clean['LONGITUDE'] == 0)]
 print(bad_coords['BOROUGH'].value_counts())
 ```
-Missing contributing factors leaned towards Brooklyn (40.4% missing for Brooklyn vs. 31.1% missing for Manhattan). Since there are more records in Brooklyn, this doesn't indicate a signifigant skew towards one borough or the other. On the other hand, missing coordinates skewed towards Manhattan (304 missing counts for Manhattan vs. 235 missing counts for Brooklyn). This does indicate a skew in that a disproportional amount of incidents with missing coordinates come from Manhattan-something worth noting.
+Missing contributing factors leaned towards Brooklyn (40.4% missing for Brooklyn vs. 31.1% missing for Manhattan). 
+Since there are more records in Brooklyn, this doesn't indicate a signifigant skew towards one borough or the other. 
+On the other hand, missing coordinates skewed towards Manhattan (304 missing counts for Manhattan vs. 235 missing counts for Brooklyn). 
+This does indicate a skew in that a disproportional amount of incidents with missing coordinates come from Manhattan-something worth noting.
 
 
 # Transformation Processes
