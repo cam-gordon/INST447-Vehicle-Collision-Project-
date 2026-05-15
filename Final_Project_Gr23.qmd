@@ -125,17 +125,16 @@ ambulance, taxi, box van, etc.) (text)
 
 # The code should be well-documented, including how choices were made.
 
-import pandas as pd
-# ZIP CODE column contained mixed data types. Changed to string.     
+import pandas as pd #pandas library needed to make dataframes and change data.
 df = pd.read_csv(
-    "Motor_Vehicle_Collisions.csv",
-    dtype={"ZIP CODE": str},
+    "Motor_Vehicle_Collisions.csv", #downloaded csv from dataset above and read using pandas
+    dtype={"ZIP CODE": str}, # ZIP CODE column contained mixed data types. Changed to string.     
     low_memory=False
 )
 
-df.head()
-df.info()
-df.isnull().sum().sort_values(ascending=False).head(10)
+df.head() #displays the first five rows of the dataset, allowing us to verify that the data loaded correctly and to preview
+df.info() #provides a summary of the dataset
+df.isnull().sum().sort_values(ascending=False).head(10) #identifies the variables with the highest number of missing values. This is important for evaluating data quality and determining which variables may require cleaning
 
 # Columns that are relevant to the analysis, focusing on pedestrians and cyclist.
 relevant_columns = [
@@ -158,6 +157,7 @@ relevant_columns = [
     'VEHICLE TYPE CODE 2'
 ]
 
+#Creating a new datafram with the relevant columns needed.
 NYC_df = df[relevant_columns]
 
 NYC_df.head()
